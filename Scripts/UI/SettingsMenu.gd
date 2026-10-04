@@ -122,7 +122,7 @@ func open() -> void:
 
 func update_all_starting() -> void:
 	get_tree().call_group("Options", "update_starting_values")
-	var _lang_idx := Global.lang_codes.find(TranslationServer.get_locale())
+	var _lang_idx: int = Global.lang_codes.find(TranslationServer.get_locale())
 	%Flag.region_rect.position.x = 0 if _lang_idx == Global.lang_codes.find("ar") else _lang_idx * 16
 	$PanelContainer/MarginContainer/VBoxContainer/Video/Language.selected_index = Global.lang_codes.find(Settings.file.game.lang)
 
