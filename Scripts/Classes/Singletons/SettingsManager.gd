@@ -107,6 +107,7 @@ func _enter_tree() -> void:
 	#Settings.refresh_window_size(size)
 	#print(file.video.size)
 	TranslationServer.set_locale(Settings.file.game.lang)
+	ArabicRTL.apply_locale(Settings.file.game.lang)
 	get_window().size_changed.connect(update_window_size)
 
 func update_window_size() -> void:

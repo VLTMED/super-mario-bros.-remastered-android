@@ -1,0 +1,45 @@
+name: Arabic localization check
+on:
+  push:
+    paths:
+      - 'Resources/Locale/**'
+      - 'Resources/Fonts/**'
+      - 'Scripts/Classes/Singletons/ArabicRTL.gd'
+      - 'Scripts/Classes/Singletons/Global.gd'
+      - 'Scripts/Classes/Singletons/SettingsManager.gd'
+      - 'Scripts/UI/WindowChanger.gd'
+      - 'project.godot'
+  pull_request:
+    paths:
+      - 'Resources/Locale/**'
+      - 'Resources/Fonts/**'
+      - 'Scripts/Classes/Singletons/ArabicRTL.gd'
+      - 'Scripts/Classes/Singletons/Global.gd'
+      - 'Scripts/Classes/Singletons/SettingsManager.gd'
+      - 'Scripts/UI/WindowChanger.gd'
+      - 'project.godot'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/meldanor/godot-ci:4.4-stable-minimal
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Arabic coverage and CSV shape
+        run: |
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('Resources/Locale/locale.csv')
+          rows = list(csv.reader(p.open(encoding='utf-8-sig', newline='')))
+          assert 'ar' in rows[0], 'Arabic locale column is missing'
+          ai = rows[0].index('ar')
+          keys = [r[0] for r in rows[1:] if r and r[0]]
+          missing = [r[0] for r in rows[1:] if r and r[0] and (len(r) <= ai or not r[ai].strip())]
+          assert not missing, f'Missing Arabic values: {missing[:10]}'
+          assert len(keys) == len(set(keys)), 'Duplicate localization keys'
+          print(f'Validated {len(keys)} keys with Arabic coverage')
+          PY
+      - name: Import project and compile translations
+        run: godot --headless --editor --path . --quit --verbose
