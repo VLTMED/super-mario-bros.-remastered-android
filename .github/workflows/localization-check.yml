@@ -27,19 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate Arabic coverage and CSV shape
-        run: |
-          python3 - <<'PY'
-          import csv
-          from pathlib import Path
-          p = Path('Resources/Locale/locale.csv')
-          rows = list(csv.reader(p.open(encoding='utf-8-sig', newline='')))
-          assert 'ar' in rows[0], 'Arabic locale column is missing'
-          ai = rows[0].index('ar')
-          keys = [r[0] for r in rows[1:] if r and r[0]]
-          missing = [r[0] for r in rows[1:] if r and r[0] and (len(r) <= ai or not r[ai].strip())]
-          assert not missing, f'Missing Arabic values: {missing[:10]}'
-          assert len(keys) == len(set(keys)), 'Duplicate localization keys'
-          print(f'Validated {len(keys)} keys with Arabic coverage')
-          PY
+        run: godot --headless --path . --script tests/validate_localization.gd
       - name: Import project and compile translations
         run: godot --headless --editor --path . --quit --verbose
