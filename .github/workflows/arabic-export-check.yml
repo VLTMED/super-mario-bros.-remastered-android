@@ -1,0 +1,29 @@
+name: Arabic localization export check
+on:
+  workflow_dispatch:
+jobs:
+  export-linux:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/meldanor/godot-ci:4.4-stable-minimal
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup Godot templates
+        env:
+          GODOT_VERSION: 4.4.stable
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates
+          ln -sf /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+      - name: Export Linux build
+        run: |
+          mkdir -p build/linux_x86
+          godot --headless --verbose --export-release "Linux x86" build/linux_x86/SuperMarioBrosRemastered
+          tar -czf build/SuperMarioBrosRemastered-linux-x86.tar.gz -C build/linux_x86 SuperMarioBrosRemastered
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SuperMarioBrosRemastered-linux-x86
+          path: build/SuperMarioBrosRemastered-linux-x86.tar.gz
