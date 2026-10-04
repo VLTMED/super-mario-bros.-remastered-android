@@ -1,13 +1,14 @@
 extends Node
-## Arabic localization runtime support: RTL layout, pixel Arabic font (Solar 6) and live locale updates.
+## Arabic localization runtime support: RTL layout, OpenType-shaped pixel Arabic font (Solar 6) and live locale updates.
 ##
 ## - UI text switches to the Solar 6 pixel font (and back) without destroying the game's own font overrides.
 ## - The on-screen touch controls (d-pad / A / B / Run / Start) are never mirrored: they stay LTR.
 
 const ARABIC_LOCALE := "ar"
-## Solar 6 is drawn on a 7-unit pixel grid, so multiples of 7 keep every font pixel on whole screen pixels.
+## Solar 6 is drawn on a 7-unit pixel grid. 14px is the closest 2x pixel scale to
+## the game's 16px bitmap UI while keeping glyph edges on a stable integer grid.
 const FONT_GRID := 7
-const DEFAULT_FONT_SIZE := 7
+const DEFAULT_FONT_SIZE := 14
 const META_ORIGINAL := &"_arabic_rtl_original"
 ## Nodes under a CanvasLayer running this script are never mirrored.
 const LTR_ONLY_SCRIPT := "OnScreenControls.gd"
@@ -57,7 +58,7 @@ func _apply_to_tree(root: Node) -> void:
 		_apply_to_tree(child)
 
 func _uses_font(control: Control) -> bool:
-	return control is Label or control is Button or control is LineEdit or control is TextEdit or control is SpinBox
+	return control is Label or control is Button or control is LineEdit or control is TextEdit or control is SpinBox or control is RichTextLabel
 
 func _apply_font(control: Control) -> void:
 	if not _uses_font(control):
