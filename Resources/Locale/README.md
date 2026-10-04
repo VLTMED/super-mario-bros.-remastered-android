@@ -14,6 +14,7 @@ context in one place.
 5. Godot regenerates the `.translation` resources from the CSV on import.
 
 Arabic UI behavior is implemented in `Scripts/Classes/Singletons/ArabicRTL.gd`:
-when `ar` is selected, controls use RTL layout and the bundled Solar 6 pixel Arabic font
-(`Resources/Fonts/Solar6VF.ttf`, free to use). The on-screen touch controls always stay LTR.
+when `ar` is selected, controls use RTL layout and the bundled 16x16 OpenType pixel Arabic font
+(`Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf`, distributed under the included OFL license).
+The on-screen touch controls always stay LTR.
 Switching back to another language restores the original theme font and layout.

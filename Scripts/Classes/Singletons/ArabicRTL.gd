@@ -1,22 +1,26 @@
 extends Node
-## Arabic localization runtime support: RTL layout, OpenType-shaped pixel Arabic font (Solar 6) and live locale updates.
+## Arabic localization runtime support: RTL layout, OpenType-shaped 16x16 pixel Arabic font and live locale updates.
 ##
-## - UI text switches to the Solar 6 pixel font (and back) without destroying the game's own font overrides.
+## - Arabic UI switches to the dedicated 16x16 pixel font (and back) without destroying the game's own font overrides.
 ## - The on-screen touch controls (d-pad / A / B / Run / Start) are never mirrored: they stay LTR.
 
 const ARABIC_LOCALE := "ar"
-## Solar 6 is drawn on a 7-unit pixel grid. 14px is the closest 2x pixel scale to
-## the game's 16px bitmap UI while keeping glyph edges on a stable integer grid.
-const FONT_GRID := 7
-const DEFAULT_FONT_SIZE := 14
+## The supplied font was designed on the same 16px grid as Font.fnt.
+const FONT_GRID := 16
+const DEFAULT_FONT_SIZE := 16
 const META_ORIGINAL := &"_arabic_rtl_original"
 ## Nodes under a CanvasLayer running this script are never mirrored.
 const LTR_ONLY_SCRIPT := "OnScreenControls.gd"
+const ARABIC_FONT_PATH := "res://Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf"
 
-var _font: FontFile = preload("res://Resources/Fonts/Solar6VF.ttf")
+var _font := FontFile.new()
 var _is_arabic := false
 
 func _enter_tree() -> void:
+	var font_error := _font.load_dynamic_font(ARABIC_FONT_PATH)
+	if font_error != OK:
+		push_error("Cannot load Arabic OpenType font: " + ARABIC_FONT_PATH)
+		return
 	# Pixel-crisp rendering: no smoothing, no hinting, no sub-pixel placement.
 	_font.antialiasing = TextServer.FONT_ANTIALIASING_NONE
 	_font.hinting = TextServer.HINTING_NONE
