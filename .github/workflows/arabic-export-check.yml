@@ -70,7 +70,9 @@ jobs:
           sed -i 's/^ *//' ~/.config/godot/editor_settings-4.5.tres
 
       - name: Align Android build template version with Godot
-        run: echo -n "${GODOT_DIR_VERSION}" > android/.build_version
+        run: |
+          echo -n "${GODOT_DIR_VERSION}" > android/.build_version
+          chmod +x android/build/gradlew
 
       - name: Import project
         run: godot --headless --editor --path . --quit 2>&1 | tee /tmp/import.log || true

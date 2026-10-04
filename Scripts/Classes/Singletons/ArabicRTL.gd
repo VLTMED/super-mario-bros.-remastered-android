@@ -5,12 +5,8 @@ const ARABIC_FONT := preload("res://Resources/Fonts/NotoKufiArabic-Regular.ttf")
 var _is_arabic := false
 
 func _enter_tree() -> void:
-    TranslationServer.translation_changed.connect(_on_translation_changed)
     get_tree().node_added.connect(_on_node_added)
     call_deferred("apply_locale", TranslationServer.get_locale())
-
-func _on_translation_changed() -> void:
-    apply_locale(TranslationServer.get_locale())
 
 func _on_node_added(node: Node) -> void:
     if _is_arabic and node is Control:
