@@ -31,7 +31,7 @@ jobs:
 
       - name: Download Godot headless
         run: |
-          curl -fL -o godot.zip "https://downloads.tuxfamily.org/godotengine/4.5.1/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
           unzip -q godot.zip
           chmod +x Godot_v${GODOT_VERSION}_linux.x86_64
           sudo mv Godot_v${GODOT_VERSION}_linux.x86_64 /usr/local/bin/godot
