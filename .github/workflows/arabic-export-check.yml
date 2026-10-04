@@ -9,6 +9,13 @@ env:
   GODOT_TAG: 4.5.1-stable
   GODOT_DIR_VERSION: 4.5.1.stable
 
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: write
+
 jobs:
   export-android:
     runs-on: ubuntu-latest
@@ -38,8 +45,12 @@ jobs:
 
       - name: Install Android SDK components
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platform-tools" "build-tools;35.0.1" "platforms;android-35" "cmake;3.10.2.4988404" "ndk;28.1.13356709"
+          set +e
+          SM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          echo "ANDROID_HOME=$ANDROID_HOME"; ls "$ANDROID_HOME" "$ANDROID_HOME/cmdline-tools" 2>&1
+          (yes | "$SM" --licenses) > /tmp/lic.log 2>&1; tail -3 /tmp/lic.log
+          set -e
+          "$SM" --install "platform-tools" "build-tools;35.0.1" "platforms;android-35" "cmake;3.10.2.4988404" "ndk;28.1.13356709" 2>&1 | tee -a /tmp/sdk.log
 
       - name: Create debug keystore + Godot editor settings
         run: |
@@ -62,13 +73,23 @@ jobs:
         run: echo -n "${GODOT_DIR_VERSION}" > android/.build_version
 
       - name: Import project
-        run: godot --headless --editor --path . --quit || true
+        run: godot --headless --editor --path . --quit 2>&1 | tee /tmp/import.log || true
 
       - name: Export debug APK
         run: |
           mkdir -p build
-          godot --headless --verbose --path . --export-debug "Android" "$PWD/build/SMB1R-Arabic-debug.apk"
+          godot --headless --verbose --path . --export-debug "Android" "$PWD/build/SMB1R-Arabic-debug.apk" 2>&1 | tee /tmp/export.log
           ls -lh build
+
+      - name: Publish diagnostics to ci-logs branch
+        if: always()
+        run: |
+          mkdir -p /tmp/diag && cp /tmp/*.log /tmp/diag/ 2>/dev/null || true
+          cp ~/.config/godot/*.tres /tmp/diag/ 2>/dev/null || true
+          cd /tmp/diag && git init -q && git checkout -q -b ci-logs
+          git config user.name ci && git config user.email ci@example.com
+          git add -A && git commit -qm "logs run ${{ github.run_id }}" || true
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-logs || true
 
       - uses: actions/upload-artifact@v4
         with:
