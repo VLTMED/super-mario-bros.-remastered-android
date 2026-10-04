@@ -1,5 +1,8 @@
 name: Arabic localization Android APK export
 on:
+  push:
+    branches:
+      - feat/arabic-rtl-localization
   workflow_dispatch:
 jobs:
   export-android:
