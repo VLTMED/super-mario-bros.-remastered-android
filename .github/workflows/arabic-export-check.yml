@@ -1,8 +1,8 @@
-name: Arabic localization export check
+name: Arabic localization Android APK export
 on:
   workflow_dispatch:
 jobs:
-  export-linux:
+  export-android:
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/meldanor/godot-ci:4.4-stable-minimal
@@ -17,13 +17,12 @@ jobs:
         run: |
           mkdir -p ~/.local/share/godot/export_templates
           ln -sf /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
-      - name: Export Linux build
+      - name: Export Android APK
         run: |
-          mkdir -p build/linux_x86
-          godot --headless --verbose --export-release "Linux x86" build/linux_x86/SuperMarioBrosRemastered
-          tar -czf build/SuperMarioBrosRemastered-linux-x86.tar.gz -C build/linux_x86 SuperMarioBrosRemastered
-      - name: Upload Linux artifact
+          mkdir -p build/android
+          godot --headless --verbose --export-release "Android" build/android/SuperMarioBrosRemastered-ar.apk
+      - name: Upload Android APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SuperMarioBrosRemastered-linux-x86
-          path: build/SuperMarioBrosRemastered-linux-x86.tar.gz
+          name: SuperMarioBrosRemastered-ar-android-apk
+          path: build/android/SuperMarioBrosRemastered-ar.apk
