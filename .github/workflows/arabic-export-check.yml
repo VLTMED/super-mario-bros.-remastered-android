@@ -72,6 +72,9 @@ jobs:
       - name: Align Android build template version with Godot
         run: |
           echo -n "${GODOT_DIR_VERSION}" > android/.build_version
+          # libs/ (godot-lib.aar) is gitignored: restore it from the official template without overwriting project files
+          unzip -n -q ~/.local/share/godot/export_templates/${GODOT_DIR_VERSION}/android_source.zip -d android/build
+          ls -R android/build/libs | head -20
           chmod +x android/build/gradlew
 
       - name: Import project
