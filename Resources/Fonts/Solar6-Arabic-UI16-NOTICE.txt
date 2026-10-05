@@ -1,0 +1,10 @@
+Solar6-Arabic-UI16.ttf
+======================
+Derived from "Solar 6" (Solar6VF.ttf, v1.100), whose license text states:
+"This font may be downloaded and used for free."
+
+Changes made for Super Mario Bros. Remastered (glyph shapes are unchanged):
+- Subset to the Arabic blocks (U+0600-06FF, presentation forms) with all shaping features kept.
+- Units-per-em recalibrated to 960 (60 units per font pixel x 16 px) so that the game's UI size of 16
+  draws one font pixel as exactly one screen pixel.
+- Vertical metrics set to ascent 11 px / descent 5 px (a 16 px line box, like the game's Font.fnt).

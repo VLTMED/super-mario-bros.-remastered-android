@@ -10,7 +10,7 @@ func _ready() -> void:
 	Global.get_node("GameHUD").hide()
 	OnScreenControls.should_show = false
 	
-	if updating: $MarginContainer/ProgressBar/Label.text = "UPDATING ASSETS..."
+	if updating: $MarginContainer/ProgressBar/Label.text = "ASSETS_UPDATING"
 	#rom = FileAccess.get_file_as_bytes(Global.ROM_PATH)
 	rom = FileAccess.get_file_as_bytes(Global.rom_path)
 	print(Global.rom_path)

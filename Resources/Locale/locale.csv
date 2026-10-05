@@ -106,10 +106,10 @@ MENU_QUEST_SELECT,,Select Quest,Quel Quête,Wybierz Przygodę,bыбepиte kbect,
 MENU_CHARA_SELECT,,Select Character,Quel Personnage,Wybierz Postać,bыбepиte Пepcohaжa,Seleccionar Personaje,Selezione personaggio,ＳＥＬＥＣＴ ＣＨＡＲＡＣＴＥＲ,Pumili ng Karakter,Charakter wählen,Karakter Seç,Pilih Karakter,Escolha o seu Pesonagem,キャラクターをえらぶ,اختيار الشخصية
 QUEST_FIRST,,First Quest,Première Quête,Pierwsza Przygoda,Пepbый kbect,Primera Mision,Prima missione,ＦＩＲＳＴ ＱＵＥＳＴ,Unang Misyon,Erstes Abenteuer,Bİrİncİ Görev,Quest Pertama,Primeira Missão,クエスト1,المهمة الأولى
 QUEST_SECOND,,Second Quest,Deuxième Quête,Druga Przygoda,btopoй kbect,Segunda Mision,Seconda missione,ＳＥＣＯＮＤ ＱＵＥＳＴ,Ikalawang Misyon,Zweites Abenteuer,İkİncİ Görev,Quest Kedua,Segunda Missão,クエスト2,المهمة الثانية
-CHAR_MARIO,,Mario,Mario,Mario,mapиo,Mario,Mario,ＭＡＲＩＯ,Mario,Mario,Marİo,Mario,Mario,マリオ,ماريو
-CHAR_LUIGI,,Luigi,Luigi,Luigi,ЛУиджи,Luigi,Luigi,ＬＵＩＧＩ,Luigi,Luigi,Luİgİ,Luigi,Luigi,ルイージ,لويجي
-CHAR_TOAD,,Toad,Toad,Toad,toaд,Toad,Toad,ＴＯＡＤ,Kinopyo,Toad,Toad,Toad,Toad,キノピオ,تود
-CHAR_TOADETTE,,Toadette,Toadette,Toadette,toaдetta,Toadette,Toadette,ＴＯＡＤＥＴＴＥ,Kinopiko,Toadette,Toadette,Toadette,Toadette,キノピコ,توديت
+CHAR_MARIO,,Mario,Mario,Mario,mapиo,Mario,Mario,ＭＡＲＩＯ,Mario,Mario,Marİo,Mario,Mario,マリオ,MARIO
+CHAR_LUIGI,,Luigi,Luigi,Luigi,ЛУиджи,Luigi,Luigi,ＬＵＩＧＩ,Luigi,Luigi,Luİgİ,Luigi,Luigi,ルイージ,LUIGI
+CHAR_TOAD,,Toad,Toad,Toad,toaд,Toad,Toad,ＴＯＡＤ,Kinopyo,Toad,Toad,Toad,Toad,キノピオ,TOAD
+CHAR_TOADETTE,,Toadette,Toadette,Toadette,toaдetta,Toadette,Toadette,ＴＯＡＤＥＴＴＥ,Kinopiko,Toadette,Toadette,Toadette,Toadette,キノピコ,TOADETTE
 PAUSE_RESUME,,Resume,Continuer,Kontynuuj,Пpoдoлжиtь,Reanudar,Continua,ＲＥＳＵＭＥ,Magpatuloy,Fortsetzen,Devam Et,Melanjutkan,Retome ao Jogo,つづける,متابعة
 PAUSE_RESTART,,Restart Level,Recommencer,Zrestartuj Poziom,Пobtopиtь,Reiniciar nivel,Ricomincia,ＲＥＳＴＡＲＴ ＬＥＶＥＬ,Ulitin,Level neustarten,Yenİden Başla,Ulang Level,Recomeçar o Nível,リスタート,إعادة المرحلة
 PAUSE_QUIT,,Quit to Menu,Quitter,Wyjdź do Menu,bыйtи b mehю,Salir al menú,Torna al menù,ＱＵＩＴ ＴＯ ＭＥＮＵ,Bumalik sa Menu,Zurück zum Hauptmenü,Menüye Çık,Keluar ke Menu,Sair para o Menu,メインメニュー,الخروج إلى القائمة
@@ -253,8 +253,8 @@ CHALLENGE_DIALOGUE_SCORE,,Score,Score,Wynik,oчkи,Puntuación,Punteggio,ＳＣ�
 CHALLENGE_DIALOGUE_COINS,,Coins,Pièces,Monety,mohetы,Monedas,Monete,ＣＯＩＮＳ,Coins,Münzen,Altınlar,Koin,Moedas,コイン,العملات
 CHALLENGE_DIALOGUE_EXIT,,Press jump to continue.,Appuyez pour quitter,Naciśnij aby wyjść,haжmиte любУю khoпkУ.,Pulse Saltar para continuar.,"Schiaccia il pulsante ""salta"" per uscire.",ＰＲＥＳＳ ＪＵＭＰ ＴＯ ＣＯＮＴＩＮＵＥ.,Pinduntin ang Jump button para umalis,Zum Beenden springen.,Çıkmak İçİn zıpla.,Tekan lompat untuk keluar.,Pressione pular para continuar.,「ジャンプ」を　おして　ぞっこう,اضغط زر القفز للاستمرار.
 TIME_UP,message that shows when you run out of time,Time Up!,Temps écoulé !,Koniec Czasu,bpemя bышлo!,¡Se acabo el Tiempo!,Tempo scaduto!,ＴＩＭＥ ＵＰ!,Time up!,Zeit vorbei!,Zaman Bİttİ!,Waktunya Habis!,Acabou o Tempo!,TIME UP,انتهى الوقت!
-HUD_TIME,,Time,Temps,Czas,bpemя ,Tiempo,Tempo,ＴＩＭＥ,Oras!,Zeit,Zaman,Waktu,Tempo,TIME,الوقت
-HUD_WORLD,,World,Monde,Świat,mиp,Mundo,Mondo,ＷＯＲＬＤ,Mundo,Welt,Dünya,Dunia,Mundo,WORLD,العالم
+HUD_TIME,,Time,Temps,Czas,bpemя ,Tiempo,Tempo,ＴＩＭＥ,Oras!,Zeit,Zaman,Waktu,Tempo,TIME,TIME
+HUD_WORLD,,World,Monde,Świat,mиp,Mundo,Mondo,ＷＯＲＬＤ,Mundo,Welt,Dünya,Dunia,Mundo,WORLD,WORLD
 RESOURCE_AVAILABLE,,Available Resource Packs,Packs de ressources disponibles,Dostępne Paczki Zasobów,ДoctУпhыe tekctУp-пakи,Paquetes de recursos disponibles,Pacchetti di risorse disponibili,ＡＶＡＩＬＡＢＬＥ ＲＥＳＯＵＲＣＥ ＰＡＣＫＳ,Mga available na Resource Pack,Verfügbare Ressourcenpakete,Mevcut Kaynak Paketlerİ,Paket Resource yang Tersedia,Pacotes de Recurso Disponíveis,リソースパック,حزم الموارد المتاحة
 RESOURCE_LOADED,,Loaded Resource Packs,Packs de ressources chargés,Załadowane Paczki Zasobów,ЗaгpУжehhыe tekctУp-пakи,Paquetes de recursos cargados,Pacchetti di risorse caricati,ＬＯＡＤＥＤ ＲＥＳＯＵＲＣＥ ＰＡＣＫＳ,Mga loaded na Resource Pack,Geladene Ressourcenpakete,Yüklü Kaynak Paketlerİ,Paket Resource Aktif,Pacotes de Recurso Carregados,ロードされたリソースパック,حزم الموارد المحمّلة
 RESOURCE_OPEN_FOLDER,,Open Folder,Ouvrir Dossier,Otwórz Folder,otkpыtь пaпkУ,Abrir Carpeta,Apri cartella,ＯＰＥＮ ＦＯＬＤＥＲ,Buksan ang Folder,Ordner öffnen,Klasörü Aç,Buka Folder,Abrir Pasta,フォルダーをひらく,فتح المجلد
@@ -1205,3 +1205,114 @@ SETTING_HIDE,,Hide,Masquer,Ukryj,ckpыtь,Ocultar,Nascondi,ＨＩＤＥ,Itago,Au
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 0.74,,,,,,,,,,,,,,,0.74
+ROM_BROWSE,,BROWSE FILES...,PARCOURIR LES FICHIERS...,PRZEGLĄDAJ PLIKI...,,EXAMINAR ARCHIVOS...,SFOGLIA I FILE...,,MAG-BROWSE NG MGA FILE...,DATEIEN DURCHSUCHEN...,DOSYALARA GÖZ AT...,TELUSURI BERKAS...,PROCURAR ARQUIVOS...,,تصفح الملفات...
+ROM_VERIFY_REQUIRED,,VERIFICATION REQUIRED!,VÉRIFICATION REQUISE !,WYMAGANA WERYFIKACJA!,,¡VERIFICACIÓN NECESARIA!,VERIFICA RICHIESTA!,,KAILANGAN ANG BERIPIKASYON!,ÜBERPRÜFUNG ERFORDERLICH!,DOĞRULAMA GEREKLİ!,VERIFIKASI DIPERLUKAN!,VERIFICAÇÃO NECESSÁRIA!,,التحقق مطلوب!
+ROM_TAP_SELECT,,"PLEASE TAP THE SCREEN AND SELECT YOUR VANILLA WORLD ""SUPER MARIO BROS"" ROM.","TOUCHEZ L'ÉCRAN ET SÉLECTIONNEZ VOTRE ROM D'ORIGINE DE ""SUPER MARIO BROS"".","DOTKNIJ EKRANU I WYBIERZ ORYGINALNY PLIK ROM GRY ""SUPER MARIO BROS"".",,"TOCA LA PANTALLA Y SELECCIONA TU ROM ORIGINAL DE ""SUPER MARIO BROS"".","TOCCA LO SCHERMO E SELEZIONA LA TUA ROM ORIGINALE DI ""SUPER MARIO BROS"".",,"I-TAP ANG SCREEN AT PILIIN ANG IYONG ORIHINAL NA ROM NG ""SUPER MARIO BROS"".","TIPPE AUF DEN BILDSCHIRM UND WÄHLE DEIN ORIGINALES ""SUPER MARIO BROS""-ROM AUS.","EKRANA DOKUN VE ORİJİNAL ""SUPER MARIO BROS"" ROM'UNU SEÇ.","KETUK LAYAR DAN PILIH ROM ""SUPER MARIO BROS"" ASLI ANDA.","TOQUE NA TELA E SELECIONE SUA ROM ORIGINAL DE ""SUPER MARIO BROS"".",,المس الشاشة واختر نسخة ROM الأصلية من لعبة SUPER MARIO BROS.
+ROM_INVALID_HEADER,,"INVALID ROM HEADER!
+
+ARE YOU SURE THIS IS A VANILLA ROM OF SMB1?","EN-TÊTE DE ROM INVALIDE !
+
+ÊTES-VOUS CERTAIN QU'IL S'AGIT D'UNE ROM D'ORIGINE DE SMB1 ?","NIEPRAWIDŁOWY NAGŁÓWEK ROM!
+
+CZY NA PEWNO TO ORYGINALNY ROM SMB1?",,"¡CABECERA DE ROM NO VÁLIDA!
+
+SEGURO QUE ES UNA ROM ORIGINAL DE SMB1?","INTESTAZIONE ROM NON VALIDA!
+
+SEI SICURO CHE SIA UNA ROM ORIGINALE DI SMB1?",,"DI-WASTONG HEADER NG ROM!
+
+SIGURADO KA BANG ORIHINAL NA ROM ITO NG SMB1?","UNGÜLTIGER ROM-HEADER!
+
+BIST DU SICHER, DASS DIES EIN ORIGINALES SMB1-ROM IST?","GEÇERSİZ ROM BAŞLIĞI!
+
+BUNUN ORİJİNAL BİR SMB1 ROM'U OLDUĞUNDAN EMİN MİSİN?","HEADER ROM TIDAK VALID!
+
+YAKIN INI ROM ASLI SMB1?","CABEÇALHO DE ROM INVÁLIDO!
+
+TEM CERTEZA DE QUE ESTA É UMA ROM ORIGINAL DE SMB1?",,"ترويسة ROM غير صالحة!
+
+هل أنت متأكد أنها نسخة SMB1 الأصلية؟"
+ROM_ZIP_ERROR,,"ERROR EXTRACTING ROM!
+
+ENSURE YOUR ROM ISN'T STORED IN A COMPRESSED FILE FORMAT!","ERREUR D'EXTRACTION DE LA ROM !
+
+VÉRIFIEZ QUE VOTRE ROM N'EST PAS DANS UN FORMAT COMPRESSÉ !","BŁĄD WYPAKOWYWANIA ROM!
+
+UPEWNIJ SIĘ, ŻE ROM NIE JEST W SKOMPRESOWANYM FORMACIE!",,"¡ERROR AL EXTRAER LA ROM!
+
+¡ASEGÚRATE DE QUE TU ROM NO ESTÉ EN UN FORMATO COMPRIMIDO!","ERRORE DI ESTRAZIONE DELLA ROM!
+
+ASSICURATI CHE LA ROM NON SIA IN UN FORMATO COMPRESSO!",,"ERROR SA PAG-EXTRACT NG ROM!
+
+TIYAKING HINDI NAKA-COMPRESS ANG IYONG ROM!","FEHLER BEIM ENTPACKEN DES ROMS!
+
+STELLE SICHER, DASS DEIN ROM NICHT KOMPRIMIERT IST!","ROM ÇIKARILIRKEN HATA!
+
+ROM'UNUN SIKIŞTIRILMIŞ BİÇİMDE OLMADIĞINDAN EMİN OL!","GAGAL MENGEKSTRAK ROM!
+
+PASTIKAN ROM ANDA TIDAK DALAM FORMAT TERKOMPRESI!","ERRO AO EXTRAIR A ROM!
+
+VERIFIQUE SE SUA ROM NÃO ESTÁ EM FORMATO COMPACTADO!",,"فشل استخراج ROM!
+
+تأكد أن ملف ROM غير مضغوط!"
+ROM_EXT_ERROR,,"ERROR VERIFYING ROM!
+
+ARE YOU SURE THIS IS A ROM IMAGE FILE?","ERREUR DE VÉRIFICATION DE LA ROM !
+
+ÊTES-VOUS CERTAIN QU'IL S'AGIT D'UN FICHIER IMAGE ROM ?","BŁĄD WERYFIKACJI ROM!
+
+CZY NA PEWNO TO PLIK OBRAZU ROM?",,"¡ERROR AL VERIFICAR LA ROM!
+
+SEGURO QUE ES UN ARCHIVO DE IMAGEN ROM?","ERRORE DI VERIFICA DELLA ROM!
+
+SEI SICURO CHE SIA UN FILE IMMAGINE ROM?",,"ERROR SA PAG-VERIFY NG ROM!
+
+SIGURADO KA BANG ROM IMAGE FILE ITO?","FEHLER BEIM ÜBERPRÜFEN DES ROMS!
+
+BIST DU SICHER, DASS DIES EINE ROM-IMAGE-DATEI IST?","ROM DOĞRULANIRKEN HATA!
+
+BUNUN BİR ROM İMAJ DOSYASI OLDUĞUNDAN EMİN MİSİN?","GAGAL MEMVERIFIKASI ROM!
+
+YAKIN INI BERKAS IMAGE ROM?","ERRO AO VERIFICAR A ROM!
+
+TEM CERTEZA DE QUE ESTE É UM ARQUIVO DE IMAGEM ROM?",,"فشل التحقق من ROM!
+
+هل أنت متأكد أنه ملف صورة ROM؟"
+ROM_VERIFIED,,"ROM VERIFIED! THANK YOU!
+
+PROCEEDING...","ROM VÉRIFIÉE ! MERCI !
+
+CHARGEMENT...","ROM ZWERYFIKOWANY! DZIĘKUJEMY!
+
+KONTYNUOWANIE...",,"¡ROM VERIFICADA! ¡GRACIAS!
+
+CONTINUANDO...","ROM VERIFICATA! GRAZIE!
+
+PROSEGUO...",,"NA-VERIFY ANG ROM! SALAMAT!
+
+NAGPAPATULOY...","ROM BESTÄTIGT! DANKE!
+
+WEITER GEHT'S...","ROM DOĞRULANDI! TEŞEKKÜRLER!
+
+DEVAM EDİLİYOR...","ROM TERVERIFIKASI! TERIMA KASIH!
+
+MELANJUTKAN...","ROM VERIFICADA! OBRIGADO!
+
+CONTINUANDO...",,"تم التحقق من ROM! شكرا لك!
+
+جار المتابعة..."
+ASSETS_UPDATING,,UPDATING ASSETS...,MISE À JOUR DES RESSOURCES...,AKTUALIZACJA ZASOBÓW...,,ACTUALIZANDO RECURSOS...,AGGIORNAMENTO RISORSE...,,INA-UPDATE ANG MGA ASSET...,RESSOURCEN WERDEN AKTUALISIERT...,VARLIKLAR GÜNCELLENİYOR...,MEMPERBARUI ASET...,ATUALIZANDO RECURSOS...,,جار تحديث الموارد...
+ACCEPT,,ACCEPT,,,,,,,,,,,,,قبول
+BACK,,BACK,,,,,,,,,,,,,رجوع
+PAUSE,,PAUSE,,,,,,,,,,,,,إيقاف مؤقت
+FRAME LIMIT,,FRAME LIMIT,,,,,,,,,,,,,حد الإطارات
+FIREBAR STYLE,,FIREBAR STYLE,,,,,,,,,,,,,نمط قضبان النار
+EXTRA EFFECTS,,EXTRA EFFECTS,,,,,,,,,,,,,مؤثرات إضافية
+Unlimited,,Unlimited,,,,,,,,,,,,,بلا حد
+Classic,,Classic,,,,,,,,,,,,,كلاسيكي
+Modern,,Modern,,,,,,,,,,,,,حديث
+TAP AND HOLD HERE TO RESET.,,TAP AND HOLD HERE TO RESET.,,,,,,,,,,,,,اضغط مطولا هنا لإعادة التعيين.
+PRESS F5 TO RESET BINDINGS.,,PRESS F5 TO RESET BINDINGS.,,,,,,,,,,,,,اضغط F5 لإعادة تعيين المفاتيح.
+Configure Pack,,Configure Pack,,,,,,,,,,,,,إعداد الحزمة
+Reverify ROM,,Reverify ROM,,,,,,,,,,,,,إعادة التحقق من ROM
+SUCCESSFULLY RESET BINDINGS!,,SUCCESSFULLY RESET BINDINGS!,,,,,,,,,,,,,تمت إعادة التعيين بنجاح!
+HOLD FOR %s.%sS TO RESET...,,HOLD FOR %s.%sS TO RESET...,,,,,,,,,,,,,استمر %s.%s ث لإعادة التعيين...

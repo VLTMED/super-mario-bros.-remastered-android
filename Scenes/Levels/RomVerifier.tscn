@@ -180,7 +180,7 @@ offset_right = 0.08598328
 offset_bottom = 0.04801941
 shortcut = SubResource("Shortcut_5175m")
 shortcut_in_tooltip = false
-text = "BROWSE FILES..."
+text = "ROM_BROWSE"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
@@ -190,7 +190,7 @@ anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
 size_flags_vertical = 0
-text = "VERIFICATION REQUIRED!"
+text = "ROM_VERIFY_REQUIRED"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -216,7 +216,7 @@ offset_right = -4.800003
 offset_bottom = -0.040000916
 grow_horizontal = 2
 grow_vertical = 2
-text = "PLEASE TAP THE SCREEN AND SELECT YOUR VANILLA WORLD \"SUPER MARIO BROS\" ROM."
+text = "ROM_TAP_SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -234,9 +234,7 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-text = "INVALID ROM HEADER!
-
-ARE YOU SURE THIS IS A VANILLA ROM OF SMB1?"
+text = "ROM_INVALID_HEADER"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -253,9 +251,7 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-text = "ERROR EXTRACTING ROM!
-
-ENSURE YOUR ROM ISN'T STORED IN A COMPRESSED FILE FORMAT!"
+text = "ROM_ZIP_ERROR"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -272,9 +268,7 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-text = "ERROR VERIFYING ROM!
-
-ARE YOU SURE THIS IS A ROM IMAGE FILE?"
+text = "ROM_EXT_ERROR"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -283,9 +277,7 @@ unique_name_in_owner = true
 visible = false
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
-text = "ROM VERIFIED! THANK YOU!
-
-PROCEEDING..."
+text = "ROM_VERIFIED"
 horizontal_alignment = 1
 autowrap_mode = 2
 

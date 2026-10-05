@@ -1,32 +1,38 @@
 extends Node
-## Arabic localization runtime support: RTL layout, OpenType-shaped 16x16 pixel Arabic font and live locale updates.
+## Arabic support that keeps the game's own look and layout.
 ##
-## - Arabic UI switches to the dedicated 16x16 pixel font (and back) without destroying the game's own font overrides.
-## - The on-screen touch controls (d-pad / A / B / Run / Start) are never mirrored: they stay LTR.
+## - Arabic letters are drawn with a pixel Arabic font (Solar 6, Arabic-only subset). Everything else (Latin, digits,
+##   spaces, punctuation, symbols) still comes from the game's own font, so it looks exactly like the original.
+## - Solar is drawn 1:1 (one font pixel = one screen pixel) and has the same 16 px line box as Font.fnt: no extra pixel.
+## - The UI is mirrored (RTL), except zones that must look like the original: the on-screen touch controls and the
+##   top HUD bar (MARIO / coins / WORLD / TIME).
 
 const ARABIC_LOCALE := "ar"
-## The supplied font was designed on the same 16px grid as Font.fnt.
-const FONT_GRID := 16
-const DEFAULT_FONT_SIZE := 16
+const ARABIC_FONT_PATH := "res://Resources/Fonts/Solar6-Arabic-UI16.ttf"
+## Font.fnt line box is 16 px high and glyph bottoms sit 5 px above the line bottom; Solar is shifted to match.
+const GLYPH_BOTTOM_GAP := 5
+const GAME_FONT_SIZE := 16.0
 const META_ORIGINAL := &"_arabic_rtl_original"
-## Nodes under a CanvasLayer running this script are never mirrored.
-const LTR_ONLY_SCRIPT := "OnScreenControls.gd"
-const ARABIC_FONT_PATH := "res://Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf"
 
-var _font := FontFile.new()
+var _arabic_base: FontFile
+var _composites: Dictionary = {}  # original font instance id -> composite FontVariation
 var _is_arabic := false
 
 func _enter_tree() -> void:
-	var font_error := _font.load_dynamic_font(ARABIC_FONT_PATH)
-	if font_error != OK:
-		push_error("Cannot load Arabic OpenType font: " + ARABIC_FONT_PATH)
+	_arabic_base = FontFile.new()
+	if _arabic_base.load_dynamic_font(ARABIC_FONT_PATH) != OK:
+		push_error("Cannot load Arabic font: " + ARABIC_FONT_PATH)
 		return
-	# Pixel-crisp rendering: no smoothing, no hinting, no sub-pixel placement.
-	_font.antialiasing = TextServer.FONT_ANTIALIASING_NONE
-	_font.hinting = TextServer.HINTING_NONE
-	_font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+	# Pixel-crisp rendering: no smoothing, no hinting, no sub-pixel placement, no system fallback.
+	_arabic_base.antialiasing = TextServer.FONT_ANTIALIASING_NONE
+	_arabic_base.hinting = TextServer.HINTING_NONE
+	_arabic_base.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+	_arabic_base.allow_system_fallback = false
 	get_tree().node_added.connect(_on_node_added)
 	call_deferred("apply_locale", TranslationServer.get_locale())
+
+func is_arabic() -> bool:
+	return _is_arabic
 
 func _on_node_added(node: Node) -> void:
 	if _is_arabic and node is Control:
@@ -37,59 +43,83 @@ func apply_locale(locale: String) -> void:
 	if get_tree().root != null:
 		_apply_to_tree(get_tree().root)
 
+## Composite = Arabic pixel font first, the game's original font as fallback for everything Arabic does not cover.
+func _composite_for(original: Font) -> Font:
+	if original == null:
+		return null
+	var id := original.get_instance_id()
+	if _composites.has(id):
+		return _composites[id]
+	var composite := FontVariation.new()
+	composite.base_font = _arabic_base
+	# Same line box as Font.fnt (ascent 16, descent 0) and the same visual baseline as its glyphs.
+	composite.spacing_top = GLYPH_BOTTOM_GAP
+	composite.spacing_bottom = -GLYPH_BOTTOM_GAP
+	composite.baseline_offset = -GLYPH_BOTTOM_GAP / GAME_FONT_SIZE
+	composite.fallbacks = [original]
+	_composites[id] = composite
+	return composite
+
 func _is_ltr_only(node: Node) -> bool:
 	var current := node
 	while current != null:
-		if current is CanvasLayer:
-			var script := current.get_script() as Script
-			if script != null and script.resource_path.ends_with(LTR_ONLY_SCRIPT):
+		var script := current.get_script() as Script
+		if script != null:
+			var path := script.resource_path
+			# On-screen touch controls and the top HUD bar must look exactly like the original.
+			if path.ends_with("OnScreenControls.gd") or path.ends_with("GameHUD.gd"):
 				return true
+		if current.name == &"VersionLabel":
+			return true
 		current = current.get_parent()
 	return false
 
 func _apply_to_tree(root: Node) -> void:
 	if not is_instance_valid(root):
 		return
-	var ltr_only := _is_ltr_only(root)
 	if root is Control:
 		var control := root as Control
-		if ltr_only:
+		if _is_ltr_only(control):
 			control.layout_direction = Control.LAYOUT_DIRECTION_LTR if _is_arabic else Control.LAYOUT_DIRECTION_INHERITED
+			# Text such as "*00" or "1-1" must keep its original left-to-right order.
+			_set_text_direction(control, TextServer.DIRECTION_LTR if _is_arabic else TextServer.DIRECTION_INHERITED)
+			_restore_font(control)
 		else:
 			control.layout_direction = Control.LAYOUT_DIRECTION_RTL if _is_arabic else Control.LAYOUT_DIRECTION_INHERITED
+			_set_text_direction(control, TextServer.DIRECTION_INHERITED)
 			_apply_font(control)
 	for child in root.get_children():
 		_apply_to_tree(child)
 
-func _uses_font(control: Control) -> bool:
-	return control is Label or control is Button or control is LineEdit or control is TextEdit or control is SpinBox or control is RichTextLabel
+func _set_text_direction(control: Control, direction: int) -> void:
+	if control is Label or control is Button or control is LineEdit or control is TextEdit or control is RichTextLabel:
+		control.set(&"text_direction", direction)
+
+func _has_text_font(control: Control) -> bool:
+	return control is Label or control is Button or control is LineEdit or control is TextEdit or control is RichTextLabel
 
 func _apply_font(control: Control) -> void:
-	if not _uses_font(control):
+	if not _has_text_font(control):
 		return
-	if _is_arabic:
-		if not control.has_meta(META_ORIGINAL):
-			# Remember what the control had before (null = nothing, i.e. it used the theme).
-			control.set_meta(META_ORIGINAL, {
-				"font": control.get_theme_font(&"font") if control.has_theme_font_override(&"font") else null,
-				"size": control.get_theme_font_size(&"font_size") if control.has_theme_font_size_override(&"font_size") else 0,
-			})
-		var original: Dictionary = control.get_meta(META_ORIGINAL)
-		control.add_theme_font_override(&"font", _font)
-		control.add_theme_font_size_override(&"font_size", _snap_size(int(original["size"])))
-	elif control.has_meta(META_ORIGINAL):
-		var original: Dictionary = control.get_meta(META_ORIGINAL)
-		if original["font"] != null:
-			control.add_theme_font_override(&"font", original["font"])
-		else:
-			control.remove_theme_font_override(&"font")
-		if int(original["size"]) > 0:
-			control.add_theme_font_size_override(&"font_size", int(original["size"]))
-		else:
-			control.remove_theme_font_size_override(&"font_size")
-		control.remove_meta(META_ORIGINAL)
+	if not _is_arabic:
+		_restore_font(control)
+		return
+	if not control.has_meta(META_ORIGINAL):
+		control.set_meta(META_ORIGINAL, {
+			"font": control.get_theme_font(&"font") if control.has_theme_font_override(&"font") else null,
+			"was_override": control.has_theme_font_override(&"font"),
+		})
+	var original: Dictionary = control.get_meta(META_ORIGINAL)
+	var source: Font = original["font"] if original["was_override"] else control.get_theme_font(&"font")
+	if source != null:
+		control.add_theme_font_override(&"font", _composite_for(source))
 
-func _snap_size(original_size: int) -> int:
-	if original_size <= 0:
-		return DEFAULT_FONT_SIZE
-	return maxi(FONT_GRID, roundi(original_size / float(FONT_GRID)) * FONT_GRID)
+func _restore_font(control: Control) -> void:
+	if not control.has_meta(META_ORIGINAL):
+		return
+	var original: Dictionary = control.get_meta(META_ORIGINAL)
+	if original["was_override"] and original["font"] != null:
+		control.add_theme_font_override(&"font", original["font"])
+	else:
+		control.remove_theme_font_override(&"font")
+	control.remove_meta(META_ORIGINAL)

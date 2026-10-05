@@ -7,13 +7,13 @@ func _init() -> void:
         quit(1)
         return
     var rtl_source := arabic_script.get_as_text()
-    for required in ["SMB-Remastered-ArabicPixel16-Regular.ttf", "FONT_ANTIALIASING_NONE", "HINTING_NONE", "SUBPIXEL_POSITIONING_DISABLED", "FONT_GRID := 16", "DEFAULT_FONT_SIZE := 16"]:
+    for required in ["Solar6-Arabic-UI16.ttf", "FONT_ANTIALIASING_NONE", "HINTING_NONE", "SUBPIXEL_POSITIONING_DISABLED", "OnScreenControls.gd", "GameHUD.gd"]:
         if rtl_source.find(required) < 0:
             push_error("Arabic pixel/OpenType setting is missing: " + required)
             quit(1)
             return
     var arabic_font := FontFile.new()
-    if arabic_font.load_dynamic_font("res://Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf") != OK:
+    if arabic_font.load_dynamic_font("res://Resources/Fonts/Solar6-Arabic-UI16.ttf") != OK:
         push_error("Arabic OpenType font cannot be loaded")
         quit(1)
         return

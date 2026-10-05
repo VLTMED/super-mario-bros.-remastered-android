@@ -52,10 +52,7 @@ func hud_style_changed(new_value := 0) -> void:
 func language_changed(new_value := 0) -> void:
 	TranslationServer.set_locale(Global.lang_codes[new_value])
 	Settings.file.game.lang = Global.lang_codes[new_value]
-	if Global.lang_codes[new_value] == "ar":
-		%Flag.region_rect.position.x = 0
-	else:
-		%Flag.region_rect.position.x = new_value * 16
+	%Flag.region_rect.position.x = new_value * 16
 	ArabicRTL.apply_locale(Global.lang_codes[new_value])
 
 func frame_limit_changed(new_value := 0) -> void: 

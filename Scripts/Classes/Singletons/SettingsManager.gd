@@ -123,8 +123,17 @@ func save_settings() -> void:
 	cfg_file.set_value("game", "campaign", Global.current_campaign)
 	cfg_file.save(SETTINGS_DIR)
 
+## Language the device is set to, if the game supports it (used on the very first launch only).
+static func detect_device_lang() -> String:
+	var code := OS.get_locale_language().to_lower()
+	var aliases := {"ja": "jp", "tl": "fil", "in": "id", "ga": "ga"}
+	if aliases.has(code):
+		code = aliases[code]
+	return code if Global.lang_codes.has(code) else "en"
+
 func load_settings() -> void:
 	if FileAccess.file_exists(SETTINGS_DIR) == false:
+		file.game.lang = detect_device_lang()
 		save_settings()
 	var cfg_file = ConfigFile.new()
 	cfg_file.load(SETTINGS_DIR)

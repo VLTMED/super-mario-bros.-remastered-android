@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 			var remaining_seconds : int = floor(remaining)
 			var remaining_millis : int = floor(remaining*1000) - remaining_seconds*1000
 			var remaining_millis_s : String = str(remaining_millis) if remaining_millis > 99 else "0" + str(remaining_millis) if remaining_millis > 9 else "00" + str(remaining_millis) if remaining_millis > 0 else "000"
-			controller_reset_label.text = "HOLD FOR %s.%sS TO RESET..." % [remaining_seconds, remaining_millis_s ]
+			controller_reset_label.text = tr("HOLD FOR %s.%sS TO RESET...") % [remaining_seconds, remaining_millis_s ]
 	elif controller_reset_label.text != "TAP AND HOLD HERE TO RESET." and Time.get_unix_time_from_system() - last_controller_reset > 3.0:
 		controller_reset_label.text = "TAP AND HOLD HERE TO RESET."
 	
@@ -77,7 +77,7 @@ func _process(_delta: float) -> void:
 			var remaining_seconds : int = floor(remaining)
 			var remaining_millis : int = floor(remaining*1000) - remaining_seconds*1000
 			var remaining_millis_s : String = str(remaining_millis) if remaining_millis > 99 else "0" + str(remaining_millis) if remaining_millis > 9 else "00" + str(remaining_millis) if remaining_millis > 0 else "000"
-			osc_reset_label.text = "HOLD FOR %s.%sS TO RESET..." % [remaining_seconds, remaining_millis_s ]
+			osc_reset_label.text = tr("HOLD FOR %s.%sS TO RESET...") % [remaining_seconds, remaining_millis_s ]
 	elif osc_reset_label.text != "TAP AND HOLD HERE TO RESET." and Time.get_unix_time_from_system() - last_osc_reset > 3.0:
 		osc_reset_label.text = "TAP AND HOLD HERE TO RESET."
 
@@ -123,7 +123,7 @@ func open() -> void:
 func update_all_starting() -> void:
 	get_tree().call_group("Options", "update_starting_values")
 	var _lang_idx: int = Global.lang_codes.find(TranslationServer.get_locale())
-	%Flag.region_rect.position.x = 0 if _lang_idx == Global.lang_codes.find("ar") else _lang_idx * 16
+	%Flag.region_rect.position.x = _lang_idx * 16
 	$PanelContainer/MarginContainer/VBoxContainer/Video/Language.selected_index = Global.lang_codes.find(Settings.file.game.lang)
 
 func close() -> void:
