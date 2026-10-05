@@ -6,6 +6,17 @@ const ARABIC_LOCALE := "ar"
 const ARABIC_FONT_PATH := "res://Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf"
 const META_ORIGINAL := &"_arabic_rtl_original"
 
+## Gameplay popups that only ever show raw digits (score notes, 1-up notes).
+## They have nothing to localize, but ScoreNoteSpawner instantiates one on
+## every single enemy stomp/combo hit - without this exclusion, every kill
+## was queuing a full recursive theme/RTL walk (meta Dictionary allocation +
+## an ancestor-chain scan per control) on the main thread, which is the
+## "random" stutter players hit during shell combos and multi-kill moments.
+const _NON_LOCALIZABLE_SCENES := {
+	"res://Scenes/Parts/ScoreNote.tscn": true,
+	"res://Scenes/Parts/OneUpNote.tscn": true,
+}
+
 var _font := FontFile.new()
 var _is_arabic := false
 
@@ -25,8 +36,12 @@ func is_arabic() -> bool:
 	return _is_arabic
 
 func _on_node_added(node: Node) -> void:
-	if _is_arabic and node is Control:
-		call_deferred("_apply_to_tree", node)
+	if not _is_arabic or not node is Control:
+		return
+	var owner_node := node.owner
+	if owner_node != null and _NON_LOCALIZABLE_SCENES.has(owner_node.scene_file_path):
+		return
+	call_deferred("_apply_to_tree", node)
 
 func apply_locale(locale: String) -> void:
 	_is_arabic = locale == ARABIC_LOCALE or locale.begins_with(ARABIC_LOCALE + "-")
