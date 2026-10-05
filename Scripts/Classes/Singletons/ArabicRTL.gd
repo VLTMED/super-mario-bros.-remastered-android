@@ -59,7 +59,10 @@ func _apply_to_tree(root: Node) -> void:
 				_set_text_direction(control, TextServer.DIRECTION_LTR)
 				_restore_font(control)
 			else:
-				control.layout_direction = Control.LAYOUT_DIRECTION_RTL
+				# Do not mirror every Control. Mirroring Panel/Margin/VBox/Scroll containers
+				# changes their minimum-size negotiation and was the source of the oversized
+				# Arabic settings frame. Only text and horizontal flow need RTL.
+				control.layout_direction = Control.LAYOUT_DIRECTION_RTL if _needs_rtl_flow(control) else Control.LAYOUT_DIRECTION_INHERITED
 				_set_text_direction(control, TextServer.DIRECTION_INHERITED)
 				_apply_font(control)
 		else:
@@ -69,6 +72,9 @@ func _apply_to_tree(root: Node) -> void:
 
 func _is_text_control(control: Control) -> bool:
 	return control is Label or control is Button or control is LineEdit or control is TextEdit or control is SpinBox or control is RichTextLabel
+
+func _needs_rtl_flow(control: Control) -> bool:
+	return _is_text_control(control) or control is HBoxContainer or control is GridContainer
 
 func _set_text_direction(control: Control, direction: int) -> void:
 	if _is_text_control(control):
