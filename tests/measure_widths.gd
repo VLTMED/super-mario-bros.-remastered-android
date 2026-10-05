@@ -3,7 +3,7 @@ func _init() -> void:
 	await process_frame
 	var rtl = root.get_node("ArabicRTL")
 	var main: Font = ThemeDB.get_project_theme().default_font
-	var ar := rtl._composite_for(main) as Font
+	var ar: Font = rtl._font
 	var f := FileAccess.open("res://Resources/Locale/locale.csv", FileAccess.READ)
 	var header := f.get_csv_line()
 	var ien := header.find("en"); var iar := header.find("ar")

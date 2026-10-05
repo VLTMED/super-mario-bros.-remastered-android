@@ -14,8 +14,9 @@ context in one place.
 5. Godot regenerates the `.translation` resources from the CSV on import.
 
 Arabic UI behavior is implemented in `Scripts/Classes/Singletons/ArabicRTL.gd`:
-when `ar` is selected, the UI is mirrored (RTL) and Arabic letters are drawn with the bundled pixel font
-`Resources/Fonts/Solar6-Arabic-UI16.ttf` (see the NOTICE file next to it). The game's own font stays the
-fallback for Latin text, digits and symbols, so every line keeps the original 16 px line height.
+when `ar` is selected, the UI is mirrored (RTL) and text uses the bundled full OpenType pixel font
+`Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf`. It contains Arabic, Latin, digits and
+symbols in one resource, so no missing-glyph boxes appear. The script never changes `font_size`, panel
+minimum sizes, offsets, or line wrapping; the original HUD and score font remain unchanged.
 The on-screen touch controls and the top HUD bar (MARIO / WORLD / TIME) always stay LTR like the original.
 On the very first launch the game picks the device language when it is supported.

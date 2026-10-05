@@ -7,14 +7,18 @@ func _init() -> void:
         quit(1)
         return
     var rtl_source := arabic_script.get_as_text()
-    for required in ["Solar6-Arabic-UI16.ttf", "FONT_ANTIALIASING_NONE", "HINTING_NONE", "SUBPIXEL_POSITIONING_DISABLED", "OnScreenControls.gd", "GameHUD.gd"]:
+    for required in ["SMB-Remastered-ArabicPixel16-Regular.ttf", "FONT_ANTIALIASING_NONE", "HINTING_NONE", "SUBPIXEL_POSITIONING_DISABLED", "OnScreenControls.gd", "GameHUD.gd"]:
         if rtl_source.find(required) < 0:
             push_error("Arabic pixel/OpenType setting is missing: " + required)
             quit(1)
             return
     var arabic_font := FontFile.new()
-    if arabic_font.load_dynamic_font("res://Resources/Fonts/Solar6-Arabic-UI16.ttf") != OK:
+    if arabic_font.load_dynamic_font("res://Resources/Fonts/SMB-Remastered-ArabicPixel16-Regular.ttf") != OK:
         push_error("Arabic OpenType font cannot be loaded")
+        quit(1)
+        return
+    if not arabic_font.has_char("ا".unicode_at(0)) or not arabic_font.has_char("0".unicode_at(0)) or not arabic_font.has_char("A".unicode_at(0)):
+        push_error("Arabic font is missing Arabic, digit, or Latin glyph coverage")
         quit(1)
         return
     var file := FileAccess.open("res://Resources/Locale/locale.csv", FileAccess.READ)

@@ -1,0 +1,16 @@
+source: /mnt/data/alfont_com_RooyinFree-RegularDots2.ttf
+output: /mnt/data/SMB-Remastered-ArabicPixel16-Regular.ttf
+source_sha256: cda3b2eecca65de576a6ced3fa74ca059dce8d21ea67a4c9be1c2c9510bab7e0
+output_sha256: 904704800fe2a05761c87f61a2e56c1047dcbade049cb4defac9f5d8beba137d
+target: {'design_grid_px': '16x16', 'visible_cell_px': 16, 'line_height_px': 16, 'fixed_advance_px': 16}
+metrics: {'unitsPerEm': 2000, 'grid_units_per_px': 125, 'hhea_ascent': 1600, 'hhea_descent': -200, 'hhea_lineGap': 200, 'line_height_units': 2000}
+glyph_count: 680
+unicode_cmap_count: 736
+arabic_codepoint_count: 350
+gsub_features: ['ccmp', 'fina', 'init', 'locl', 'medi', 'rclt', 'rlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'subs', 'sups', 'swsh', 'tnum']
+gpos_features: ['mark', 'mkmk']
+public_kern_feature: False
+grid_nonconforming_glyph_coords: 0
+grid_nonconforming_gpos_anchors: 0
+validation_errors: []
+added_symbols: ['U+2190', 'U+2192', 'U+2191', 'U+2193', 'U+25B2', 'U+25BC', 'U+25C0', 'U+25B6', 'U+2605', 'U+2606', 'U+2022', 'U+00B7']
