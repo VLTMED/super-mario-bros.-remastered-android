@@ -1,0 +1,14 @@
+--- adb starting (pid 2915) ---
+10-06 05:13:53.437  2915  2915 I adb     : main.cpp:65 Android Debug Bridge version 1.0.41
+10-06 05:13:53.437  2915  2915 I adb     : main.cpp:65 Version 37.0.1-15733141
+10-06 05:13:53.437  2915  2915 I adb     : main.cpp:65 Installed as /usr/local/lib/android/sdk/platform-tools/adb
+10-06 05:13:53.437  2915  2915 I adb     : main.cpp:65 Running on Linux 6.17.0-1022-azure (x86_64)
+10-06 05:13:53.437  2915  2915 I adb     : main.cpp:65 
+10-06 05:13:53.962  2915  2915 I adb     : adb.cpp:1288 adb server killed by remote request
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:283 kill-server process callchain
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:2923 cmdline:/usr/local/lib/android/sdk/platform-tools/adb kill-server
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:2476 cmdline:godot --headless --verbose --path . --export-debug Android /home/runner/work/super-mario-bros.-remastered-android/super-mario-bros.-remastered-android/build/SMB1R-Arabic-debug.apk
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:2473 cmdline:/usr/bin/bash --noprofile --norc -e -o pipefail /home/runner/work/_temp/f3720f42-bd50-4f42-b1e4-e97be092e2d8.sh
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:2015 cmdline:/home/runner/actions-runner/cached/2.337.0/bin/Runner.Worker spawnclient 142 145
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:1995 cmdline:/home/runner/actions-runner/cached/2.337.0/bin/Runner.Listener run
+10-06 05:13:53.972  2915  2915 I adb     : blame_kill.cpp:297 pid:1941 cmdline:/opt/hca/hosted-compute-agent
