@@ -19,11 +19,16 @@ func _ready() -> void:
 
 	OnScreenControls.should_show = false
 	await get_tree().physics_frame
-	android_picker = Engine.get_singleton("GodotFilePicker")
+	android_picker = Engine.get_singleton("AndroidFilePicker")
+	if android_picker == null:
+		push_error("RomVerifier: 'AndroidFilePicker' singleton not found (not an Android build, or the addon AAR wasn't bundled) - ROM file picking is unavailable.")
+		return
 	android_picker.file_picked.connect(on_file_selected)
 
 func on_screen_tapped() -> void:
 	haptic_feedback()
+	if android_picker == null:
+		return
 	android_picker.openFilePicker("*/*")
 
 func on_file_selected(temp_path: String, mime_type: String) -> void:
