@@ -60,8 +60,8 @@ signal text_shadow_changed
 
 var debugged_in := true
 
-var score_tween = null
-var time_tween = null
+var score_tween: Tween = null
+var time_tween: Tween = null
 
 var total_deaths := 0
 
@@ -318,12 +318,14 @@ func tally_time() -> void:
 	score_tally_finished.emit()
 
 func cancel_score_tally() -> void:
-	if score_tween != null:
+	if is_instance_valid(score_tween):
 		score_tween.kill()
-	if time_tween != null:
+	if is_instance_valid(time_tween):
 		time_tween.kill()
 	tallying_score = false
 	$ScoreTally.stop()
+	score_tween = null
+	time_tween = null
 
 func activate_p_switch() -> void:
 	if p_switch_active == false:

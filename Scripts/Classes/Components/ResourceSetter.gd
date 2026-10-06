@@ -12,8 +12,10 @@ signal sprites_updated
 static var cache := {}
 
 func _ready() -> void:
-	Global.level_theme_changed.connect(update_sprites)
-	Global.level_time_changed.connect(update_sprites)
+	if not Global.level_theme_changed.is_connected(update_sprites):
+		Global.level_theme_changed.connect(update_sprites)
+	if not Global.level_time_changed.is_connected(update_sprites):
+		Global.level_time_changed.connect(update_sprites)
 	update_sprites()
 
 func update_sprites() -> void:
