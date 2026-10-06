@@ -9,7 +9,9 @@ var file := {
 		"scaling": 1,
 		"visuals": 1,
 		"hud_size": 0, 
-		"frame_limit" : 0,
+		# 1 = 60 FPS. Keep Unlimited as an explicit user choice in the menu,
+		# but do not ship with it: it overrides project.godot's 60 FPS cap.
+		"frame_limit" : 1,
 		"window_size": [256, 240]
 	},
 	"audio": {
@@ -140,6 +142,11 @@ func load_settings() -> void:
 	for section in cfg_file.get_sections():
 		for key in cfg_file.get_section_keys(section):
 			file[section][key] = cfg_file.get_value(section, key)
+	# Older builds stored the default as 0 (Unlimited). Migrate that default
+	# once so existing installations also start at the intended 60 FPS cap.
+	if int(file.video.get("frame_limit", 1)) == 0:
+		file.video.frame_limit = 1
+		save_settings()
 	fix_broken_settings()
 
 func fix_broken_settings() -> void:
